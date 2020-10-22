@@ -1,0 +1,28 @@
+body {
+  min-height: 100vh;
+  text-align: center;
+}
+
+.list-group {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.list-group-item {
+  padding: 20px;
+  border: 1px black solid;
+
+  /* align-items: flex-start; */
+}
+
+.sign {
+  padding: 5px;
+}
+
+.page-footer {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding-top: 0;
+  margin-top: 50px;
+}
