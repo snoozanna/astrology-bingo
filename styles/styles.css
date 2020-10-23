@@ -19,6 +19,10 @@ body {
   padding: 5px;
 }
 
+.sign .icon {
+  max-width: 50px;
+}
+
 .page-footer {
   bottom: 0;
   left: 0;

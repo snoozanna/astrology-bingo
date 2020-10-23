@@ -1,9 +1,59 @@
 class BirthChart {
   constructor(sun, rising, moon) {
-    this.sun = sun;
-    this.rising = rising;
-    this.moon = moon;
+    this.sun = {
+      sign: sun,
+      icon: BirthChart.getIconUrl(sun),
+    };
+    // this.sun.icon = BirthChart.getIcon(sun);
+    this.rising = {
+      sign: rising,
+      icon: BirthChart.getIconUrl(rising),
+    };
+    // this.rising.icon = BirthChart.getIcon(rising);
+    this.moon = {
+      sign: moon,
+      icon: BirthChart.getIconUrl(moon),
+    };
+    // this.moon.icon = BirthChart.getIcon(moon);
     this._id = uuidv4();
+  }
+  //need to call getIcons when new birth chart is made??e
+  static getIconUrl(sign) {
+    switch (sign) {
+      case 'Aries':
+        return './assets/img/aries.png';
+        break;
+      case 'Taurus':
+        return './assets/img/taurus.png';
+        break;
+      case 'Cancer':
+        return './assets/img/cancer.png';
+        break;
+      case 'Leo':
+        return './assets/img/leo.png';
+        break;
+      case 'Virgo':
+        return './assets/img/virgo.png';
+        break;
+      case 'Libra':
+        return './assets/img/libra.png';
+        break;
+      case 'Scorpio':
+        return './assets/img/scorpio.png';
+        break;
+      case 'Sagittarius':
+        return './assets/img/sagittarius.png';
+        break;
+      case 'Capricorn':
+        return './assets/img/capricorn.png';
+        break;
+      case 'Pisces':
+        return './assets/img/pisces.png';
+        break;
+      default:
+        console.log('default');
+        break;
+    }
   }
 
   bcReport() {
@@ -18,9 +68,6 @@ function uuidv4() {
     return v.toString(16);
   });
 }
-
-const firstBC = new BirthChart('sag', 'virgo', 'aries');
-console.log('firstBC', firstBC);
 
 const birthChartData = [
   {
@@ -44,6 +91,7 @@ class BirthChartList {
       function (data) {
         const newBirthChart = new BirthChart(data.sun, data.rising, data.moon);
         this.#list.push(newBirthChart);
+        // this.#list.push(newBirthChart);
       }.bind(this),
     );
   }
@@ -91,13 +139,12 @@ function render(list = [], mountNode) {
   const frag = document.createDocumentFragment();
 
   for (const birthChart of list) {
-    showSymbol(birthChart);
+    // showSymbol(birthChart);
     const li = document.createElement('li');
     li.classList.add('list-group-item');
-    li.innerHTML = `
-<div id="sign" class="sign">Sun in ${birthChart.sun} ${birthChart.symbol} </div>
-<div id="sign" class="sign">Ascendant in ${birthChart.rising} </div>
-<div id="sign" class="sign">Moon in ${birthChart.moon} </div>
+    li.innerHTML = ` <div id="sign" class="sign">Sun in ${birthChart.sun.sign} <img src="${birthChart.sun.icon}"  class="sign icon"> </div>
+<div id="sign" class="sign">Ascendant in ${birthChart.rising.sign} <img src="${birthChart.rising.icon}"  class="sign icon"> </div> </div>
+<div id="sign" class="sign">Moon in ${birthChart.moon.sign} <img src="${birthChart.moon.icon}"  class="sign icon"> </div></div>
 <button class="btn btn-danger delete" data-id="${birthChart._id}">delete</button>
 <button class="btn btn-danger show-chart" data-id="${birthChart._id}">show chart</button>
     `;
@@ -134,26 +181,3 @@ birthChartList.addEventListener('click', (e) => {
 });
 
 // SHOW CHART
-
-// function showSymbol(birthChart) {
-//   for (const sign of Object.keys(birthChart)) {
-//     const showSymbol = birthChart[i];
-//     switch (showSymbol) {
-//       case 'aries':
-//         symbol = './assets/img/aries.png';
-//         break;
-//       case 'taurus':
-//         symbol = './assets/img/taurus.png';
-//         break;
-//       case 'cancer':
-//         symbol = './assets/img/cancer.png';
-//         break;
-//       case 'leo':
-//         symbol = './assets/img/leo.png';
-//         break;
-//       case 'virgo':
-//         symbol = './assets/img/virgo.png';
-//         break;
-//     }
-//   }
-// }
