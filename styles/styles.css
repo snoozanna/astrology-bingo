@@ -15,12 +15,21 @@ body {
   /* align-items: flex-start; */
 }
 
-.sign {
-  padding: 5px;
+.chart {
+  padding: 10px;
 }
 
-.sign .icon {
+.sign {
+  padding: 10px;
+}
+
+.sign.icon {
   max-width: 50px;
+}
+
+.chart-id {
+  padding: 10px;
+  font-size: 0.6rem;
 }
 
 .page-footer {

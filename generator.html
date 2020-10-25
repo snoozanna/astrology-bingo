@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Dashboard</title>
+
+  <!-- 3rd party styles -->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+    crossorigin="anonymous" />
+
+  <!-- our own styles  -->
+  <link rel="stylesheet" href="/styles/styles.css">
+
+  <!-- 3rd party scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
+    integrity="sha512-rmZcZsyhe0/MAjquhTgiUcb4d9knaFc7b5xAfju483gbEXTkeJRUMIPk6s3ySZMYUHEcjKbjLjyddGWMrNEvZg=="
+    crossorigin="anonymous" defer></script>
+
+  <!-- our own scripts  -->
+  <script src="scripts/add-data.js" type="module"></script>
+  <script src="scripts/main.js" type="module"></script>
+
+
+
+</head>
+
+<body>
+  <header class="page-header">
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo center">Astrology Bingo</a>
+        <!-- <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="sass.html">Sass</a></li>
+          <li><a href="badges.html">Components</a></li>
+          <li><a href="collapsible.html">JavaScript</a></li>
+        </ul> -->
+      </div>
+    </nav>
+  </header>
+  <main>
+    <section id="generator-section">
+      <h1>Random call generator</h1>
+      <ul id="generator-list" class="list-group">
+      </ul>
+      <button class="btn btn-danger">CALL</button>
+    </section>
+
+  </main>
+  <footer class="page-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Something else</h5>
+          <p class="grey-text text-lighten-4">Blah blah blah.</p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <h5 class="white-text">Links</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="./index.html">Birth charts in play</a></li>
+            <li><a class="grey-text text-lighten-3" href="./add-birth-data.html">Add birth chart</a></li>
+            <li><a class="grey-text text-lighten-3" href="./generator.html">Random call generator</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        © 2020 Copyright Text
+
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

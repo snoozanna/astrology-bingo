@@ -62,7 +62,7 @@ class BirthChart {
 }
 
 function uuidv4() {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+  return 'xxxxx'.replace(/[xy]/g, function (c) {
     var r = (Math.random() * 16) | 0,
       v = c == 'x' ? r : (r & 0x3) | 0x8;
     return v.toString(16);
@@ -142,11 +142,14 @@ function render(list = [], mountNode) {
     // showSymbol(birthChart);
     const li = document.createElement('li');
     li.classList.add('list-group-item');
-    li.innerHTML = ` <div id="sign" class="sign">Sun in ${birthChart.sun.sign} <img src="${birthChart.sun.icon}"  class="sign icon"> </div>
+    li.innerHTML = ` <div id="chart" class="chart">Sun in ${birthChart.sun.sign} <img src="${birthChart.sun.icon}"  class="sign icon"> </div>
 <div id="sign" class="sign">Ascendant in ${birthChart.rising.sign} <img src="${birthChart.rising.icon}"  class="sign icon"> </div> </div>
-<div id="sign" class="sign">Moon in ${birthChart.moon.sign} <img src="${birthChart.moon.icon}"  class="sign icon"> </div></div>
+<div id="sign" class="sign">Moon in ${birthChart.moon.sign} <img src="${birthChart.moon.icon}"  class="sign icon"> </div>
+</div>
+
 <button class="btn btn-danger delete" data-id="${birthChart._id}">delete</button>
 <button class="btn btn-danger show-chart" data-id="${birthChart._id}">show chart</button>
+<div id="chart-id" class="chart-id">ID ${birthChart._id}</div>
     `;
     frag.append(li);
   }
