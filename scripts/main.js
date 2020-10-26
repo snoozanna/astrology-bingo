@@ -124,6 +124,15 @@ class BirthChartList {
     // Remove
     this.#list.splice(index, 1);
   }
+
+  showBirthChart(id) {
+    if (typeof id !== 'string' || !id)
+      throw new Error('No id provided to showBirthChart method');
+    /// this will turn the birthchart data into relevant object and associate symbols
+    console.log(
+      'working out what needs text and symbols need to populate the template chart',
+    );
+  }
 }
 
 const inPlay = new BirthChartList(birthChartData);
@@ -133,8 +142,13 @@ console.log('charts in play', inPlay.getList());
 
 const birthChartSection = document.getElementById('birthchart-section');
 const birthChartList = document.getElementById('birthchart-list');
+const showBirthChartSection = document.getElementById(
+  'show-birthchart-section',
+);
 
-function render(list = [], mountNode) {
+/// render list
+
+function renderList(list = [], mountNode) {
   // Created a document fragment, so we append lis as few times as possible
   const frag = document.createDocumentFragment();
 
@@ -161,7 +175,28 @@ function render(list = [], mountNode) {
 const list = inPlay.getList();
 console.log('list', list);
 
-render(list, birthChartList);
+renderList(list, birthChartList);
+
+// render chart
+
+function renderChart(chart, mountNode) {
+  // Created a document fragment, so we append lis as few times as possible
+  const imgfrag = document.createDocumentFragment();
+
+  const chartImg = document.createElement('img');
+  chartImg.classList.add('birth-chart-img', 'materialboxed');
+  chartImg.src = '/assets/img/fake-bc-template.svg';
+  console.log('chartImg', chartImg);
+  imgfrag.append(chartImg);
+
+  mountNode.innerHTML = '';
+  mountNode.append(frag);
+}
+
+const chart = inPlay.showBirthChart();
+console.log('chart', chart);
+
+renderChart(chart, showBirthChartSection);
 
 /// DELETE (A - add update)
 
@@ -180,6 +215,11 @@ birthChartList.addEventListener('click', (e) => {
     //   populate(addForm, todo);
     //   addForm.dataset.updating = "true";
     //   addForm.dataset.id = id;
+  } else if (target && target.matches('button.show-chart')) {
+    console.log('show button clicked', target);
+    const id = target.dataset.id;
+    console.log('id', id);
+    inPlay.showBirthChart(id);
   }
 });
 
