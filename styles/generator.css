@@ -1,0 +1,4 @@
+.generator-list-section {
+  display: flex;
+  justify-content: space-evenly;
+}

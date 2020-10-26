@@ -26,6 +26,9 @@ class BirthChart {
       case 'Taurus':
         return './assets/img/taurus.png';
         break;
+      case 'Gemini':
+        return './assets/img/gemini.png';
+        break;
       case 'Cancer':
         return './assets/img/cancer.png';
         break;
@@ -46,6 +49,9 @@ class BirthChart {
         break;
       case 'Capricorn':
         return './assets/img/capricorn.png';
+        break;
+      case 'Aquarius':
+        return './assets/img/aquarius.png';
         break;
       case 'Pisces':
         return './assets/img/pisces.png';
@@ -124,14 +130,11 @@ class BirthChartList {
     // Remove
     this.#list.splice(index, 1);
   }
-
-  showBirthChart(id) {
-    if (typeof id !== 'string' || !id)
-      throw new Error('No id provided to showBirthChart method');
-    /// this will turn the birthchart data into relevant object and associate symbols
-    console.log(
-      'working out what needs text and symbols need to populate the template chart',
-    );
+  showBirthChart(birthChart) {
+    if (typeof birthChart !== 'object' || !birthChart)
+      throw new Error('No birthChart provided to showBirthChart method');
+    console.log('trying to show birthChart');
+    // a function here to populate the template with the birth chart object
   }
 }
 
@@ -142,9 +145,6 @@ console.log('charts in play', inPlay.getList());
 
 const birthChartSection = document.getElementById('birthchart-section');
 const birthChartList = document.getElementById('birthchart-list');
-const showBirthChartSection = document.getElementById(
-  'show-birthchart-section',
-);
 
 /// render list
 
@@ -177,7 +177,7 @@ console.log('list', list);
 
 renderList(list, birthChartList);
 
-// render chart
+// render chart - DOES IT GO HERE?
 
 function renderChart(chart, mountNode) {
   // Created a document fragment, so we append lis as few times as possible
@@ -190,13 +190,13 @@ function renderChart(chart, mountNode) {
   imgfrag.append(chartImg);
 
   mountNode.innerHTML = '';
-  mountNode.append(frag);
+  mountNode.append(imgfrag);
 }
 
-const chart = inPlay.showBirthChart();
-console.log('chart', chart);
+// const chart = inPlay.showBirthChart();
+// console.log("chart", chart);
 
-renderChart(chart, showBirthChartSection);
+// renderChart(chart, showBirthChartSection);
 
 /// DELETE (A - add update)
 
@@ -216,10 +216,16 @@ birthChartList.addEventListener('click', (e) => {
     //   addForm.dataset.updating = "true";
     //   addForm.dataset.id = id;
   } else if (target && target.matches('button.show-chart')) {
-    console.log('show button clicked', target);
     const id = target.dataset.id;
-    console.log('id', id);
-    inPlay.showBirthChart(id);
+    const bcToShow = inPlay.getBirthChartById(id);
+    console.log('bc to show', bcToShow);
+    // inPlay.showBirthChart(bcToShow);
+    const chart = inPlay.showBirthChart(bcToShow);
+    console.log('chart', chart);
+    const showBirthChartSection = document.getElementById(
+      'show-birthchart-section',
+    );
+    renderChart(chart, showBirthChartSection);
   }
 });
 

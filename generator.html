@@ -14,6 +14,7 @@
     crossorigin="anonymous" />
 
   <!-- our own styles  -->
+  <link rel="stylesheet" href="/styles/generator.css">
   <link rel="stylesheet" href="/styles/styles.css">
 
   <!-- 3rd party scripts -->
@@ -23,7 +24,7 @@
     crossorigin="anonymous" defer></script>
 
   <!-- our own scripts  -->
-  <script src="scripts/add-data.js" type="module"></script>
+  <script src="scripts/generator.js" type="module"></script>
   <script src="scripts/main.js" type="module"></script>
 
 
@@ -45,12 +46,22 @@
   </header>
   <main>
     <section id="generator-section">
-      <h1>Random call generator</h1>
-      <ul id="generator-list" class="list-group">
-      </ul>
-      <button class="btn btn-danger">CALL</button>
-    </section>
+      <div id="call-section">
+        <button id="new-call" class="new-call">CALL</button>
+      </div>
 
+      <div id="generator-list-section" class="generator-list-section">
+
+        <div id="called-list-section" class="called-list-section">
+          <h1> Called List </h1>
+          <ul id="already-called" class="already-called"></ul>
+        </div>
+        <div id="current-call-section" class="current-call-section">
+          <h2>Current Call</h2>
+          <div id="current-call"></div>
+        </div>
+      </div>
+    </section>
   </main>
   <footer class="page-footer">
     <div class="container">

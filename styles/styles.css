@@ -19,6 +19,11 @@ body {
   padding: 10px;
 }
 
+.birth-chart-img {
+  max-width: 60%;
+  display: inline
+}
+
 .sign {
   padding: 10px;
 }
