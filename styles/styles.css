@@ -3,6 +3,12 @@ body {
   text-align: center;
 }
 
+.birthchart-section-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .list-group {
   display: flex;
   justify-content: space-evenly;
@@ -21,7 +27,11 @@ body {
 
 .birth-chart-img {
   max-width: 60%;
-  display: inline
+  display: inline;
+}
+
+.bc-template {
+  min-width: 50%;
 }
 
 .sign {
