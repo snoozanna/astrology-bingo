@@ -16,53 +16,64 @@ class BirthChart {
     this.sun = {
       sign: sun,
       icon: BirthChart.getIconUrl(sun),
+      location: { x: 380, y: -550 },
     };
     this.moon = {
       sign: moon,
       icon: BirthChart.getIconUrl(moon),
+      location: { x: 280, y: -550 },
     };
     this.ascendant = {
       sign: ascendant,
       icon: BirthChart.getIconUrl(ascendant),
+      location: { x: 280, y: -550 },
     };
     this.mercury = {
       sign: mercury,
       icon: BirthChart.getIconUrl(mercury),
+      location: { x: 480, y: -500 },
     };
     this.venus = {
       sign: venus,
       icon: BirthChart.getIconUrl(venus),
+      location: { x: 500, y: -400 },
     };
     this.mars = {
       sign: mars,
       icon: BirthChart.getIconUrl(mars),
+      location: { x: 530, y: -310 },
     };
     this.jupiter = {
       sign: jupiter,
       icon: BirthChart.getIconUrl(jupiter),
+      location: { x: 470, y: -220 },
     };
     this.saturn = {
       sign: saturn,
       icon: BirthChart.getIconUrl(saturn),
+      location: { x: 380, y: -150 },
     };
     this.uranus = {
       sign: uranus,
       icon: BirthChart.getIconUrl(uranus),
+      location: { x: 270, y: -150 },
     };
     this.neptune = {
       sign: neptune,
       icon: BirthChart.getIconUrl(neptune),
+      location: { x: 210, y: -230 },
     };
     this.pluto = {
       sign: pluto,
       icon: BirthChart.getIconUrl(pluto),
+      location: { x: 140, y: -300 },
     };
     this.descendant = {
       sign: descendant,
       icon: BirthChart.getIconUrl(descendant),
+      location: { x: 200, y: -500 },
     };
 
-    // this.moon.icon = BirthChart.getIcon(moon);
     this._id = uuidv4();
   }
   //need to call getIcons when new birth chart is made??e
@@ -224,7 +235,27 @@ class BirthChartList {
   showBirthChart(birthChart) {
     if (typeof birthChart !== 'object' || !birthChart)
       throw new Error('No birthChart provided to showBirthChart method');
-    console.log('trying to show birthChart');
+    console.log('trying to show birthChart', birthChart);
+    // const symbolsToPopulate = [];
+    // for (const sign in birthChart) {
+    //   if (birthChart.hasOwnProperty(sign)) {
+    //     console.log('sign', birthChart[sign]);
+    //     const currentSign = birthChart[sign];
+    //     const currentSymbol = document.createElement('img');
+    //     currentSymbol.src = currentSign.icon;
+    //     console.log('icon', currentSymbol.src);
+    //     currentSymbol.location = currentSign.location;
+    //     console.log('location', currentSymbol.location);
+    //     symbolsToPopulate.push(currentSymbol);
+    //     // return currentSymbol
+    //     // gsap.to(newSymbol, {
+    //     //   duration: 2,
+    //     //   x: `${newSymbol.location.x}`,
+    //     //   y: `${newSymbol.location.y}`,
+    //     // });
+    //   }
+    // }
+    // console.log('symbols to populate', symbolsToPopulate);
     // a function here to populate the template with the birth chart object
   }
 }
@@ -282,21 +313,39 @@ renderList(list, birthChartList);
 function renderChart(chart, mountNode) {
   // Created a document fragment, so we append lis as few times as possible
   const imgfrag = document.createDocumentFragment();
+  console.log('chart to be rendered', chart);
+  const symbolsToPopulate = [];
+
+  for (const sign in chart) {
+    if (chart.hasOwnProperty(sign)) {
+      console.log('sign', chart[sign]);
+      const currentSign = chart[sign];
+      const currentSymbol = document.createElement('img');
+      currentSymbol.src = currentSign.icon;
+      console.log('icon', currentSymbol.src);
+      currentSymbol.location = currentSign.location;
+      console.log('location', currentSymbol.location);
+      symbolsToPopulate.push(currentSymbol);
+      // return currentSymbol
+      // gsap.to(newSymbol, {
+      //   duration: 2,
+      //   x: `${newSymbol.location.x}`,
+      //   y: `${newSymbol.location.y}`,
+      // });
+    }
+  }
+  console.log('symbolsToPopulate', symbolsToPopulate);
 
   const chartImg = document.createElement('img');
   chartImg.classList.add('birth-chart-img', 'materialboxed');
   chartImg.src = '/assets/img/fake-bc-template.svg';
-  console.log('chartImg', chartImg);
-  imgfrag.append(chartImg);
+
+  imgfrag.append(chartImg, symbolsToPopulate);
+  // imgfrag.append(symbolsToPopulate);
 
   mountNode.innerHTML = '';
   mountNode.append(imgfrag);
 }
-
-// const chart = inPlay.showBirthChart();
-// console.log("chart", chart);
-
-// renderChart(chart, showBirthChartSection);
 
 /// DELETE (A - add update)
 
@@ -317,10 +366,9 @@ birthChartList.addEventListener('click', (e) => {
     //   addForm.dataset.id = id;
   } else if (target && target.matches('button.show-chart')) {
     const id = target.dataset.id;
-    const bcToShow = inPlay.getBirthChartById(id);
-    console.log('bc to show', bcToShow);
-    // inPlay.showBirthChart(bcToShow);
-    const chart = inPlay.showBirthChart(bcToShow);
+    const chart = inPlay.getBirthChartById(id);
+    // console.log('bc to show', bcToShow);
+    // const chart = inPlay.showBirthChart(bcToShow);
     console.log('chart', chart);
     const showBirthChartSection = document.getElementById(
       'show-birthchart-section',
@@ -328,5 +376,3 @@ birthChartList.addEventListener('click', (e) => {
     renderChart(chart, showBirthChartSection);
   }
 });
-
-// SHOW CHART
