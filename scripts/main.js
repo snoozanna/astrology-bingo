@@ -16,47 +16,47 @@ class BirthChart {
     this.sun = {
       sign: sun,
       icon: BirthChart.getIconUrl(sun),
-      location: { x: 380, y: -550 },
+      location: { x: 180, y: -550 },
     };
     this.moon = {
       sign: moon,
       icon: BirthChart.getIconUrl(moon),
-      location: { x: 280, y: -550 },
+      location: { x: 180, y: -550 },
     };
     this.ascendant = {
       sign: ascendant,
       icon: BirthChart.getIconUrl(ascendant),
-      location: { x: 280, y: -550 },
+      location: { x: 80, y: -550 },
     };
     this.mercury = {
       sign: mercury,
       icon: BirthChart.getIconUrl(mercury),
-      location: { x: 480, y: -500 },
+      location: { x: 180, y: -500 },
     };
     this.venus = {
       sign: venus,
       icon: BirthChart.getIconUrl(venus),
-      location: { x: 500, y: -400 },
+      location: { x: 200, y: -400 },
     };
     this.mars = {
       sign: mars,
       icon: BirthChart.getIconUrl(mars),
-      location: { x: 530, y: -310 },
+      location: { x: 330, y: -310 },
     };
     this.jupiter = {
       sign: jupiter,
       icon: BirthChart.getIconUrl(jupiter),
-      location: { x: 470, y: -220 },
+      location: { x: 270, y: -220 },
     };
     this.saturn = {
       sign: saturn,
       icon: BirthChart.getIconUrl(saturn),
-      location: { x: 380, y: -150 },
+      location: { x: 110, y: -150 },
     };
     this.uranus = {
       sign: uranus,
       icon: BirthChart.getIconUrl(uranus),
-      location: { x: 270, y: -150 },
+      location: { x: 70, y: -150 },
     };
     this.neptune = {
       sign: neptune,
@@ -71,7 +71,7 @@ class BirthChart {
     this.descendant = {
       sign: descendant,
       icon: BirthChart.getIconUrl(descendant),
-      location: { x: 200, y: -500 },
+      location: { x: 50, y: -500 },
     };
 
     this._id = uuidv4();
@@ -317,21 +317,23 @@ function renderChart(chart, mountNode) {
   const symbolsToPopulate = [];
 
   for (const sign in chart) {
-    if (chart.hasOwnProperty(sign)) {
+    if (chart.hasOwnProperty(sign) && sign != '_id') {
       console.log('sign', chart[sign]);
       const currentSign = chart[sign];
       const currentSymbol = document.createElement('img');
+      currentSymbol.classList.add('sign', 'icon');
       currentSymbol.src = currentSign.icon;
       console.log('icon', currentSymbol.src);
       currentSymbol.location = currentSign.location;
-      console.log('location', currentSymbol.location);
+      console.log('location', currentSymbol.location.x);
+      gsap.to(currentSymbol, {
+        duration: 4,
+        x: `${currentSymbol.location.x}`,
+        y: `${currentSymbol.location.y}`,
+        // x: -180,
+        // y: 200,
+      });
       symbolsToPopulate.push(currentSymbol);
-      // return currentSymbol
-      // gsap.to(newSymbol, {
-      //   duration: 2,
-      //   x: `${newSymbol.location.x}`,
-      //   y: `${newSymbol.location.y}`,
-      // });
     }
   }
   console.log('symbolsToPopulate', symbolsToPopulate);
@@ -340,7 +342,7 @@ function renderChart(chart, mountNode) {
   chartImg.classList.add('birth-chart-img', 'materialboxed');
   chartImg.src = '/assets/img/fake-bc-template.svg';
 
-  imgfrag.append(chartImg, symbolsToPopulate);
+  imgfrag.append(chartImg, ...symbolsToPopulate);
   // imgfrag.append(symbolsToPopulate);
 
   mountNode.innerHTML = '';
