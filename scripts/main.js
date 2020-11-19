@@ -16,7 +16,7 @@ class BirthChart {
     this.sun = {
       sign: sun,
       icon: BirthChart.getIconUrl(sun),
-      location: { x: 180, y: -550 },
+      location: { x: 0, y: 0 },
     };
     this.moon = {
       sign: moon,
@@ -318,16 +318,16 @@ function renderChart(chart, mountNode) {
 
   for (const sign in chart) {
     if (chart.hasOwnProperty(sign) && sign != '_id') {
-      console.log('sign', chart[sign]);
+      // console.log('sign', chart[sign]);
       const currentSign = chart[sign];
       const currentSymbol = document.createElement('img');
       currentSymbol.classList.add('sign', 'icon');
       currentSymbol.src = currentSign.icon;
-      console.log('icon', currentSymbol.src);
+      // console.log('icon', currentSymbol.src);
       currentSymbol.location = currentSign.location;
-      console.log('location', currentSymbol.location.x);
+      // console.log('location', currentSymbol.location.x);
       gsap.to(currentSymbol, {
-        duration: 4,
+        duration: 6,
         x: `${currentSymbol.location.x}`,
         y: `${currentSymbol.location.y}`,
         // x: -180,
@@ -341,6 +341,9 @@ function renderChart(chart, mountNode) {
   const chartImg = document.createElement('img');
   chartImg.classList.add('birth-chart-img', 'materialboxed');
   chartImg.src = '/assets/img/fake-bc-template.svg';
+
+  // const chartImg = document.createElement('div');
+  // chartImg.classList.add('birth-chart-img');
 
   imgfrag.append(chartImg, ...symbolsToPopulate);
   // imgfrag.append(symbolsToPopulate);

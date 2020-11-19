@@ -25,9 +25,9 @@
     crossorigin="anonymous" defer></script>
 
   <!-- our own scripts  -->
-
+  <!-- <script src="scripts/main.js" type="module"></script> -->
   <script src="scripts/add-birth-data.js" type="module"></script>
-  <script src="scripts/main.js" type="module"></script>
+
 
 
 
@@ -52,21 +52,26 @@
         <h1>Add Birth data</h1>
       </header>
       <div class="row">
-        <form class="col s12 add-data-form">
+        <form class="col s12 add-data-form" method="GET" action="http://localhost:8000/getAllOneNodeType?">
           <div class="row">
             <div class="input-field col s6">
-              <input placeholder="Date of Birth" id="dob" type="text" class="datepicker">
+              <input placeholder="Date of Birth" id="dob" class="datepicker" name="date">
               <label for="dob">Date of Birth</label>
             </div>
             <div class="input-field col s6">
-              <input placeholder="Time of Birth" id="tob" type="text" class="timepicker">
+              <input placeholder="Time of Birth" id="tob" class="timepicker" name="time">
               <label for="tob">Time of Birth</label>
             </div>
             <div class="input-field col s6">
-              <input placeholder="Location" id="location" type="text" class="validate">
-              <label for="location">Time of Birth</label>
+              <input placeholder="Location1" id="location1" type="text" class="validate" name="location1">
+              <label for="location1">Latitude</label>
             </div>
-            <button class="btn btn-danger">ADD</button>
+            <div class="input-field col s6">
+              <input placeholder="Location2" id="location2" type="text" class="validate" name="location2">
+              <label for="location2">Longitude</label>
+            </div>
+            <button class="btn waves-effect waves-light add-data" id="add-data" type="submit" name="action">Submit
+            </button>
           </div>
         </form>
       </div>

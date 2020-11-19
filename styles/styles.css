@@ -17,6 +17,7 @@ body {
 .list-group-item {
   padding: 20px;
   border: 1px black solid;
+  margin-right: 20px;
 
   /* align-items: flex-start; */
 }
@@ -26,8 +27,10 @@ body {
 }
 
 .birth-chart-img {
-  max-width: 60%;
+  max-width: 50%;
   display: inline;
+  outline: thick 1px rgb(78, 75, 75);
+  background-image: url(./assets/img/fake-bc-template.svg);
 }
 
 .bc-template {
