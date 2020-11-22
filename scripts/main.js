@@ -1,3 +1,102 @@
+///FIRE BASE CONNECTION
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: 'AIzaSyD8R6dDSAazlNsgE8q-AqlKR_KQIbl8nCg',
+    authDomain: 'astrology-bingo.firebaseapp.com',
+    databaseURL: 'https://astrology-bingo.firebaseio.com',
+    projectId: 'astrology-bingo',
+    storageBucket: 'astrology-bingo.appspot.com',
+    messagingSenderId: '725757025898',
+    appId: '1:725757025898:web:e4f52d1d90d47ebf8b7413',
+    measurementId: 'G-7Y703BQ6B4',
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+  console.log('firebase', firebase);
+
+  function getData() {
+    return [
+      {
+        label: 'sun',
+        value: sun,
+      },
+      {
+        label: 'moon',
+        value: moon,
+      },
+      {
+        label: 'ascendant',
+        value: ascendant,
+      },
+      {
+        label: 'mercury',
+        value: mercury,
+      },
+      {
+        label: 'venus',
+        value: venus,
+      },
+      {
+        label: 'mars',
+        value: mars,
+      },
+      {
+        label: 'jupiter',
+        value: jupiter,
+      },
+      {
+        label: 'saturn',
+        value: saturn,
+      },
+      {
+        label: 'uranus',
+        value: uranus,
+      },
+      {
+        label: 'neptune',
+        value: neptune,
+      },
+      {
+        label: 'pluto',
+        value: pluto,
+      },
+    ];
+  }
+  function displayData() {
+    const data = getData();
+    console.log('data', data);
+  }
+
+  const database = firebase.database();
+  console.log('database', database);
+  const query = firebase.database().ref();
+
+  query.on('value', (snapshot) => {
+    const data = snapshot.val();
+    console.log('new data', data);
+    sun = data.sun;
+    rising = data.rising;
+    moon = data.moon;
+    mercury = data.mercury;
+    venus = data.venus;
+    mars = data.mars;
+    jupiter = data.jupiter;
+    saturn = data.saturn;
+    uranus = data.uranus;
+    neptune = data.neptune;
+    pluto = data.pluto;
+    descendant = data.descendant;
+
+    displayData();
+  });
+});
+
+//// MAIN APP
+
 class BirthChart {
   constructor(
     sun,

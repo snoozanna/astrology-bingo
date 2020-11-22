@@ -20,8 +20,16 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 const myForm = document.getElementById('add-data-form');
+const submitButton = document.getElementById('add-data');
 
 myForm.addEventListener('submit', function (e) {
   e.preventDefault();
   console.log('data', myForm.data);
+  // use the decodeURIComponent('06%3A26') thing here
+});
+
+myForm.submitButton('click', function (e) {
+  e.preventDefault();
+  console.log('data', myForm.data);
+  // use the decodeURIComponent('06%3A26') thing here
 });

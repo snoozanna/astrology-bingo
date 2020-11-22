@@ -57,13 +57,26 @@ function getRandomSign() {
   return signToCall;
 }
 
+// function checkCall(newCall) {
+//   console.log('checking already called', alreadyCalled);
+//   console.log(
+//     `is ${newCall} in the list already?`,
+//     alreadyCalled.includes(newCall),
+//   );
+//   return alreadyCalled.includes(newCall);
+// }
+
 function checkCall(newCall) {
-  console.log('checking already called', alreadyCalled);
-  console.log(
-    `is ${newCall} in the list already?`,
-    alreadyCalled.includes(newCall),
-  );
-  return alreadyCalled.includes(newCall);
+  console.log('checking:', newCall);
+  for (i = 0; i < alreadyCalled.length; i++) {
+    if (alreadyCalled[i][0] == newCall[0]) {
+      if (alreadyCalled[i][1] == newCall[1]) {
+        console.log("This one's been called");
+        return true;
+      }
+    }
+  }
+  return false;
 }
 
 const callSection = document.getElementById('call-section');
