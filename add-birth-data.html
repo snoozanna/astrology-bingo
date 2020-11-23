@@ -47,19 +47,35 @@
     </nav>
   </header>
   <main>
-    <section id="birthchart-section">
-      <header>
-        <h1>Add Birth data</h1>
-      </header>
+
+    <header>
+      <h1>Add Birth data</h1>
+    </header>
+    <section id="location-section">
+      <h2>Where were you born?</h2>
       <div class="row">
-        <form class="col s12 add-data-form" method="GET" action="http://localhost:8000/getAllOneNodeType?">
+        <form method="POST" id="location-form">
+          <div class="input-field  s6">
+            <input placeholder="Placename" id="placename-input" type="text" class="validate" name="placename">
+            <label for="location2">Placename</label>
+            <button class="btn waves-effect waves-light add-data" id="placename-btn" type="submit" name="">Find lat/long
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+    <section id="main-data-section">
+      <div class="row">
+        <form class="col s12 add-data-form" method="GET" action="http://localhost:8000/getAllOneNodeType?"
+          id="addDataForm">
+          <!-- <form class="col s12 add-data-form" id="addDataForm" method="GET" action=""> -->
           <div class="row">
             <div class="input-field col s6">
-              <input placeholder="Date of Birth" id="dob" class="datepicker" name="date">
+              <input placeholder="Date of Birth" id="dob" class="datepicker" name="date" type="text">
               <label for="dob">Date of Birth</label>
             </div>
             <div class="input-field col s6">
-              <input placeholder="Time of Birth" id="tob" class="timepicker" name="time">
+              <input placeholder="Time of Birth" id="tob" class="timepicker" name="time" type="text">
               <label for="tob">Time of Birth</label>
             </div>
             <div class="input-field col s6">
@@ -75,7 +91,9 @@
           </div>
         </form>
       </div>
+
     </section>
+
 
 
   </main>

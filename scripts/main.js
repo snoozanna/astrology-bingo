@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Your web app's Firebase configuration
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   const firebaseConfig = {
-    apiKey: 'AIzaSyD8R6dDSAazlNsgE8q-AqlKR_KQIbl8nCg',
+    apiKey: 'AIzaSyCrq65EKfvEZI6mNzsF-UbMhcUdY0uJb1U',
     authDomain: 'astrology-bingo.firebaseapp.com',
     databaseURL: 'https://astrology-bingo.firebaseio.com',
     projectId: 'astrology-bingo',
