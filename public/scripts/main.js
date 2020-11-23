@@ -439,7 +439,7 @@ function renderChart(chart, mountNode) {
 
   const chartImg = document.createElement('img');
   chartImg.classList.add('birth-chart-img', 'materialboxed');
-  chartImg.src = '/assets/img/fake-bc-template.svg';
+  chartImg.src = './assets/img/fake-bc-template.svg';
 
   // const chartImg = document.createElement('div');
   // chartImg.classList.add('birth-chart-img');

@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Astrology Bingo</title>
+  <title>My Dashboard</title>
 
   <!-- 3rd party styles -->
 
@@ -14,8 +14,8 @@
     crossorigin="anonymous" />
 
   <!-- our own styles  -->
-  <link rel="stylesheet" href="/styles.css">
-  <link rel="stylesheet" href="/styles/birth-chart-experiment.css">
+  <link rel="stylesheet" href="./styles/generator.css">
+  <link rel="stylesheet" href="./styles/styles.css">
 
   <!-- 3rd party scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>
@@ -24,7 +24,8 @@
     crossorigin="anonymous" defer></script>
 
   <!-- our own scripts  -->
-  <script src="scripts/birth-chart-experiment.js" type="module"></script>
+  <script src="./scripts/generator.js" type="module"></script>
+  <!-- <script src="./scripts/main.js" type="module"></script> -->
 
 
 
@@ -44,19 +45,30 @@
     </nav>
   </header>
   <main>
-    <section id="experiment">
-      <h1>Experiment</h1>
-      <img id="bc-template" class="bc-template" src="assets/img/fake-bc-template.svg"></img>
-    </section>
-    <section id="show-birthchart-section"></section>
+    <section id="generator-section">
+      <div id="call-section">
+        <button id="new-call" class="new-call">CALL</button>
+      </div>
 
+      <div id="generator-list-section" class="generator-list-section">
+
+        <div id="called-list-section" class="called-list-section">
+          <h1> Called List </h1>
+          <ul id="already-called" class="already-called"></ul>
+        </div>
+        <div id="current-call-section" class="current-call-section">
+          <h2>Current Call</h2>
+          <div id="current-call"></div>
+        </div>
+      </div>
+    </section>
   </main>
   <footer class="page-footer">
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
-          <h5 class="white-text">Something else<h5>
-              <p class="grey-text text-lighten-4">Blah blah blah.</p>
+          <h5 class="white-text">Something else</h5>
+          <p class="grey-text text-lighten-4">Blah blah blah.</p>
         </div>
         <div class="col l4 offset-l2 s12">
           <h5 class="white-text">Links</h5>

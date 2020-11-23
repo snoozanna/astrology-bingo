@@ -13,7 +13,7 @@ import urllib.parse
 
 @hug.get(examples='date=20150313&time=17%3A00&location1=38.3232&location2=-8.5498327')  
 @hug.local()
-def getAllOneNodeType(date: hug.types.text, time: hug.types.text, location1: hug.types.text, location2: hug.types.text, hug_timer=3):
+def formatData(date: hug.types.text, time: hug.types.text, location1: hug.types.text, location2: hug.types.text, hug_timer=3):
     """Changing the data types"""
     print(date)
     dateString = date[0:4]+"/"+date[4:6]+"/"+date[6:8]
