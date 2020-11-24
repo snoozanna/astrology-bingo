@@ -26,15 +26,11 @@ body {
   padding: 10px;
 }
 
-.birth-chart-img {
+.bc-template {
   max-width: 50%;
   display: inline;
   outline: thick 1px rgb(78, 75, 75);
-  background-image: url(./assets/img/fake-bc-template.svg);
-}
-
-.bc-template {
-  min-width: 50%;
+  /* background-image: url(./assets/img/fake-bc-template.svg); */
 }
 
 .sign {
