@@ -27,18 +27,18 @@ body {
 }
 
 .bc-template {
-  max-width: 50%;
-  display: inline;
-  outline: thick 1px rgb(78, 75, 75);
-  /* background-image: url(./assets/img/fake-bc-template.svg); */
-}
-
-.sign {
-  padding: 10px;
+  width: 100%;
+  height: 800px;
+  display: block;
+  outline: solid 1px rgb(78, 75, 75);
 }
 
 .sign.icon {
-  max-width: 50px;
+  max-width: 40px;
+  padding: 5px 5px 0 5px;
+}
+
+.sign.icon.chart {
 }
 
 .chart-id {
