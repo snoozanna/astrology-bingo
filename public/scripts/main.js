@@ -421,6 +421,7 @@ function renderList(list = [], mountNode) {
     <div id="sign" class="sign">Uranus in ${birthChart.uranus.sign} <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 250" class="sign icon">${birthChart.uranus.icon}</svg> </div>
     <div id="sign" class="sign">Neptune in ${birthChart.neptune.sign} <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 250" class="sign icon">${birthChart.neptune.icon}</svg> </div>
     <div id="sign" class="sign">Pluto in ${birthChart.pluto.sign} <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 250" class="sign icon">${birthChart.pluto.icon}</svg> </div>
+     <div id="sign" class="sign">Descendant in ${birthChart.descendant.sign} <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 250" class="sign icon">${birthChart.descendant.icon}</svg> </div>
  </div>
 <button class="btn btn-danger delete" data-id="${birthChart._id}">delete</button>
 <button class="btn btn-danger show-chart" data-id="${birthChart._id}">show chart</button>

@@ -7,9 +7,9 @@ from flatlib import const
 import hug
 import urllib.parse
 
-# from hug.middleware import CORSMiddleware # I can't remember why I needed this but I did, you may or may not need it
-# api = hug.API(__name__)
-# api.http.add_middleware(CORSMiddleware(api))
+from hug.middleware import CORSMiddleware # I can't remember why I needed this but I did, you may or may not need it
+api = hug.API(__name__)
+api.http.add_middleware(CORSMiddleware(api))
 
 @hug.get(examples='date=20150313&time=17%3A00&location1=38.3232&location2=-8.5498327')  
 @hug.local()
