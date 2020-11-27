@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", function () {
   };
   const elems = document.querySelectorAll(".datepicker");
   const instance = M.Datepicker.init(elems, options);
-  console.log("instance date", instance);
 });
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -20,7 +19,6 @@ document.addEventListener("DOMContentLoaded", function () {
   };
   const elems = document.querySelectorAll(".timepicker");
   const instances = M.Timepicker.init(elems, options);
-  console.log("instance time", instances);
 });
 
 const myForm = document.getElementById("addDataForm");
@@ -31,7 +29,6 @@ myForm.addEventListener("submit", function (e) {
   const timeInput = document.getElementById("tob");
   const inputtedTime = timeInput.value;
   const timeToGo = inputtedTime.replace(":", "");
-  console.log("time", timeToGo);
   timeInput.value = timeToGo;
 
   const dateInput = document.getElementById("dob");
@@ -67,6 +64,7 @@ myForm.addEventListener("submit", function (e) {
     .then((freshChartData) => {
       console.log("freshChartData", freshChartData);
       const freshChart = JSON.stringify(freshChartData);
+      // const freshChart = JSON.parse(freshChartData);
       console.log("freshChart", freshChart);
       localStorage.setItem("fresh chart", freshChart);
       render(freshChart);
@@ -76,7 +74,7 @@ myForm.addEventListener("submit", function (e) {
   function render(chart, mount = mountNode) {
     // const { temp } = report.main;
     // console.log("temperature", temp);
-    mount.innerHTML = `<p>The temperature is ${chart}&deg;C</p>`;
+    mount.innerHTML = `${chart}`;
   }
 });
 
