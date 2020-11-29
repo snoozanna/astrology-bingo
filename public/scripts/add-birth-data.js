@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 const myForm = document.getElementById("addDataForm");
-console.log(myForm);
+const chartMountNode = document.getElementById("target");
 
 myForm.addEventListener("submit", function (e) {
   e.preventDefault();
@@ -40,43 +40,61 @@ myForm.addEventListener("submit", function (e) {
   const loc2Inpu = document.getElementById("location2");
   const inputtedloc2 = loc2Inpu.value;
 
-  const mountNode = document.getElementById("target");
+  const fetchURL = `http://localhost:8000/formatData?date=${inputtedDate}&time=${timeToGo}&location1=${inputtedloc1}&location2=${inputtedloc2}&action=`;
 
-  // Get From localStorage
-  // const oldWeatherJSON = localStorage.getItem("weather");
-  // const oldWeather = JSON.parse(oldWeatherJSON);
-  // console.log("old", oldWeather);
-
-  // if (!oldWeather) {
-  // Server call (async)
-  // const appId = "f6916935ad851f78c6dbd897f6f52ac7";
-  // const query = `London,uk`;
-
-  // const date = "20201112";
-  // const time = "0682723";
-  // const location1 = "54.978252";
-  // const location2 = "-1.61778";
-
-  fetch(
-    `http://localhost:8000/formatData?date=${inputtedDate}&time=${timeToGo}&location1=${inputtedloc1}&location2=${inputtedloc2}&action=`,
-  )
-    .then((response) => response.json())
-    .then((freshChartData) => {
-      console.log("freshChartData", freshChartData);
-      const freshChart = JSON.stringify(freshChartData);
-      // const freshChart = JSON.parse(freshChartData);
-      console.log("freshChart", freshChart);
-      localStorage.setItem("fresh chart", freshChart);
-      render(freshChart);
-    })
-    .catch((err) => alert(err.message));
-
-  function render(chart, mount = mountNode) {
-    // const { temp } = report.main;
-    // console.log("temperature", temp);
-    mount.innerHTML = `${chart}`;
-  }
+  getBirthChart(fetchURL, renderChart);
 });
+
+function renderChart(chart, mount = chartMountNode) {
+  if (!chart) {
+    chartMountNode.innerHTML = "No chart";
+    return;
+  }
+  mount.innerHTML = `${chart}`;
+}
+
+async function getBirthChart(fetchURL, handler = renderChart) {
+  try {
+    const response = await fetch(fetchURL);
+    //handle bad responses
+    if (!response.status >= 200 && response.status < 300) throw response;
+    const chartData = await response.json();
+    handler(chartData);
+    // console.log("chartData", chartData);
+    const replaced = chartData.replace(/'/g, '"');
+    const parsed = JSON.parse(replaced);
+    const newBirthChart = parsed;
+    console.log('new Birth Chart', newBirthChart)
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+//   fetch(
+//     `http://localhost:8000/formatData?date=${inputtedDate}&time=${timeToGo}&location1=${inputtedloc1}&location2=${inputtedloc2}&action=`,
+//   )
+//     .then((response) => response.json())
+//     .then((freshChartData) => {
+//       console.log("freshChartData", freshChartData);
+//       const freshChart = JSON.stringify(freshChartData);
+//       // const freshChart = JSON.parse(freshChartData);
+//       console.log("freshChart", freshChart);
+//       // const map2 = new Map(freshChart);
+//       // console.log("newmap", map2);
+
+//       localStorage.setItem("fresh chart", freshChart);
+//       render(freshChart);
+//     })
+//     .catch((err) => alert(err.message));
+
+//   function render(chart, mount = mountNode) {
+//     // const { temp } = report.main;
+//     // console.log("temperature", temp);
+//     mount.innerHTML = `${chart}`;
+//   }
+// });
+
+///function that sends this data to firebase
 
 // GEOCODING
 
@@ -96,7 +114,6 @@ function renderLocation(report, mount = geoMountLat) {
     geoMountLat.innerHTML = "No geo report";
     return;
   }
-  console.log("report", report.results);
   const lat = report.results[0].geometry.location.lat;
   const long = report.results[0].geometry.location.lng;
   geoMountLat.value = lat;
@@ -106,7 +123,6 @@ function renderLocation(report, mount = geoMountLat) {
 async function getLocation(currentURL, handler = renderLocation) {
   try {
     const response = await fetch(currentURL);
-    console.log("response", response);
     //handle bad responses
 
     if (!response.status >= 200 && response.status < 300) throw response;

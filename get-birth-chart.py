@@ -30,16 +30,11 @@ def runAstroScript(dateString, timeString, location1String, location2String):
     """Running flatlib script"""
     date = Datetime(dateString, timeString, '+00:00')
     pos = GeoPos(location1String, location2String)
-    # chart = Chart(date, pos, IDs=const.LIST_OBJECTS)
-    chart = Chart(date, pos, hsys=const.HOUSES_PLACIDUS)
+    chart = Chart(date, pos, IDs=const.LIST_OBJECTS)
+    # chart = Chart(date, pos, hsys=const.HOUSES_PLACIDUS)
     asc = chart.get(const.ASC)
-    chart_array = []
+    chart_dict = {}
     for obj in chart.objects:
-        obj_dict = {"planet":obj.id, "sign": obj.sign}
-        chart_array.append(obj_dict)
-    asc_dict = {"planet":asc.id,"sign":asc.sign}
-    chart_array.append(asc_dict)
-    return {'message':'{0}'.format(chart_array)}
-    # return chart_array
-
-
+        chart_dict.update({obj.id: obj.sign})
+    chart_dict.update({asc.id: asc.sign})
+    return ('{0}'.format(chart_dict))   

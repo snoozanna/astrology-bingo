@@ -87,6 +87,7 @@ function addToGrid(newCall) {
   const sign = newCall[1];
   console.log(planet, sign);
   const item = document.getElementsByClassName(`${planet} ${sign}`);
+
   // item.classList.add("called");
   console.log("item", item);
 }
@@ -109,12 +110,15 @@ function checkGrid(alreadyCalled) {
   for (const call of alreadyCalled) {
     const planet = call[0].toLowerCase();
     const sign = call[1].toLowerCase();
-    console.log("planet", planet);
-    console.log("need to find an element with class...", planet, sign);
-    //  const item = document.querySelector(`.${planet} .${sign}`);
     const item = document.querySelector(`.${planet}.${sign}`);
     item.classList.add("called");
-    console.log("item", item);
+
+    if (!item.innerHTML) {
+      item.innerHTML += `<p>${call[0]} in ${call[1]}</p>`;
+    } else {
+      continue;
+    }
+    // // console.log("item", item);
   }
 }
 
