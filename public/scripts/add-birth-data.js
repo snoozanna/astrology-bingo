@@ -1,3 +1,108 @@
+document.addEventListener("DOMContentLoaded", function () {
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyCrq65EKfvEZI6mNzsF-UbMhcUdY0uJb1U",
+    authDomain: "astrology-bingo.firebaseapp.com",
+    databaseURL: "https://astrology-bingo.firebaseio.com",
+    projectId: "astrology-bingo",
+    storageBucket: "astrology-bingo.appspot.com",
+    messagingSenderId: "725757025898",
+    appId: "1:725757025898:web:e4f52d1d90d47ebf8b7413",
+    measurementId: "G-7Y703BQ6B4",
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  // firebase.analytics();
+
+  const database = firebase.database();
+  const query = firebase.database().ref();
+  return query;
+});
+
+function saveBirthChart(newBirthChart) {
+  firebase
+    .database()
+    .ref(`charts-in-play/${newBirthChart._id}`)
+    // .child("sun")
+    .set(
+      {
+        sun: newBirthChart.Sun,
+        ascendant: newBirthChart.Asc,
+        moon: newBirthChart.Moon,
+        mercury: newBirthChart.Mercury,
+        venus: newBirthChart.Venus,
+        mars: newBirthChart.Mars,
+        jupiter: newBirthChart.Jupiter,
+        saturn: newBirthChart.Saturn,
+        uranus: newBirthChart.Uranus,
+        neptune: newBirthChart.Neptune,
+        pluto: newBirthChart.Pluto,
+        _id: newBirthChart._id,
+        descendant: newBirthChart.Desc,
+      },
+      (error) => {
+        if (error) {
+          console.log("failed", error);
+          // The write failed...
+        } else {
+          console.log("data saved sucessfully");
+          // Data saved successfully!
+        }
+      },
+    );
+}
+
+function uuidv4() {
+  return "xxxxx".replace(/[xy]/g, function (c) {
+    var r = (Math.random() * 16) | 0,
+      v = c == "x" ? r : (r & 0x3) | 0x8;
+    return v.toString(16);
+  });
+}
+
+function calculateDesc(ascendant) {
+  switch (ascendant) {
+    case "Aries":
+      return "Libra";
+      break;
+    case "Taurus":
+      return "Scorpio";
+      break;
+    case "Gemini":
+      return "Sagittarius";
+      break;
+    case "Cancer":
+      return "Capricorn";
+      break;
+    case "Leo":
+      return "Aquarius";
+      break;
+    case "Virgo":
+      return "Pisces";
+      break;
+    case "Libra":
+      return "Aries";
+    case "Scorpio":
+      return "Taurus";
+      break;
+    case "Sagittarius":
+      return "Gemini";
+      break;
+    case "Capricorn":
+      return "Cancer";
+      break;
+    case "Aquarius":
+      return "Leo";
+      break;
+    case "Pisces":
+      return "Virgo";
+    default:
+      console.log("default");
+      break;
+  }
+}
+
 /// CONVERTING TO CORRECT FORMAT FOR HUG
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -61,40 +166,20 @@ async function getBirthChart(fetchURL, handler = renderChart) {
     const chartData = await response.json();
     handler(chartData);
     // console.log("chartData", chartData);
+    //clean data
     const replaced = chartData.replace(/'/g, '"');
     const parsed = JSON.parse(replaced);
     const newBirthChart = parsed;
-    console.log('new Birth Chart', newBirthChart)
+    //calc id & desc
+    newBirthChart._id = uuidv4();
+    const ascendant = newBirthChart.Asc;
+    newBirthChart.Desc = calculateDesc(ascendant);
+    console.log("new Birth Chart", newBirthChart);
+    saveBirthChart(newBirthChart);
   } catch (err) {
     console.log(err);
   }
 }
-
-//   fetch(
-//     `http://localhost:8000/formatData?date=${inputtedDate}&time=${timeToGo}&location1=${inputtedloc1}&location2=${inputtedloc2}&action=`,
-//   )
-//     .then((response) => response.json())
-//     .then((freshChartData) => {
-//       console.log("freshChartData", freshChartData);
-//       const freshChart = JSON.stringify(freshChartData);
-//       // const freshChart = JSON.parse(freshChartData);
-//       console.log("freshChart", freshChart);
-//       // const map2 = new Map(freshChart);
-//       // console.log("newmap", map2);
-
-//       localStorage.setItem("fresh chart", freshChart);
-//       render(freshChart);
-//     })
-//     .catch((err) => alert(err.message));
-
-//   function render(chart, mount = mountNode) {
-//     // const { temp } = report.main;
-//     // console.log("temperature", temp);
-//     mount.innerHTML = `${chart}`;
-//   }
-// });
-
-///function that sends this data to firebase
 
 // GEOCODING
 

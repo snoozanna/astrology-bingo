@@ -1,99 +1,31 @@
-///FIRE BASE CONNECTION
+// FIRE BASE CONNECTION
 
-// document.addEventListener("DOMContentLoaded", function () {
-//   // Your web app's Firebase configuration
-//   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-//   const firebaseConfig = {
-//     apiKey: "AIzaSyCrq65EKfvEZI6mNzsF-UbMhcUdY0uJb1U",
-//     authDomain: "astrology-bingo.firebaseapp.com",
-//     databaseURL: "https://astrology-bingo.firebaseio.com",
-//     projectId: "astrology-bingo",
-//     storageBucket: "astrology-bingo.appspot.com",
-//     messagingSenderId: "725757025898",
-//     appId: "1:725757025898:web:e4f52d1d90d47ebf8b7413",
-//     measurementId: "G-7Y703BQ6B4",
-//   };
-//   // Initialize Firebase
-//   firebase.initializeApp(firebaseConfig);
-//   firebase.analytics();
-//   console.log("firebase", firebase);
+document.addEventListener("DOMContentLoaded", function () {
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyCrq65EKfvEZI6mNzsF-UbMhcUdY0uJb1U",
+    authDomain: "astrology-bingo.firebaseapp.com",
+    databaseURL: "https://astrology-bingo.firebaseio.com",
+    projectId: "astrology-bingo",
+    storageBucket: "astrology-bingo.appspot.com",
+    messagingSenderId: "725757025898",
+    appId: "1:725757025898:web:e4f52d1d90d47ebf8b7413",
+    measurementId: "G-7Y703BQ6B4",
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+  console.log("firebase", firebase);
 
-//   function getData() {
-//     return [
-//       {
-//         label: "sun",
-//         value: sun,
-//       },
-//       {
-//         label: "moon",
-//         value: moon,
-//       },
-//       {
-//         label: "ascendant",
-//         value: ascendant,
-//       },
-//       {
-//         label: "mercury",
-//         value: mercury,
-//       },
-//       {
-//         label: "venus",
-//         value: venus,
-//       },
-//       {
-//         label: "mars",
-//         value: mars,
-//       },
-//       {
-//         label: "jupiter",
-//         value: jupiter,
-//       },
-//       {
-//         label: "saturn",
-//         value: saturn,
-//       },
-//       {
-//         label: "uranus",
-//         value: uranus,
-//       },
-//       {
-//         label: "neptune",
-//         value: neptune,
-//       },
-//       {
-//         label: "pluto",
-//         value: pluto,
-//       },
-//     ];
-//   }
-//   function displayData() {
-//     const data = getData();
-//     console.log("data", data);
-//   }
+  const queryCharts = firebase.database().ref("/charts-in-play/");
 
-//   const database = firebase.database();
-//   console.log("database", database);
-//   const query = firebase.database().ref();
-
-//   query.on("value", (snapshot) => {
-//     const data = snapshot.val();
-//     console.log("new data", data);
-//     sun = data.sun;
-//     rising = data.rising;
-//     moon = data.moon;
-//     mercury = data.mercury;
-//     venus = data.venus;
-//     mars = data.mars;
-//     jupiter = data.jupiter;
-//     saturn = data.saturn;
-//     uranus = data.uranus;
-//     neptune = data.neptune;
-//     pluto = data.pluto;
-//     descendant = data.descendant;
-
-//     displayData();
-//   });
-// });
+  queryCharts.on("value", (snapshot) => {
+    const birthChartData = snapshot.val();
+    console.log("birthCharts", birthChartData);
+    return birthChartData;
+  });
+});
 
 // MAIN APP
 
@@ -111,6 +43,7 @@ class BirthChart {
     neptune,
     pluto,
     descendant,
+    _id,
   ) {
     this.sun = {
       sign: sun,
@@ -173,7 +106,8 @@ class BirthChart {
       location: { x: 230, y: -220 },
     };
 
-    this._id = uuidv4();
+    // this._id = uuidv4();
+    this._id = _id;
   }
 
   static getIconSVG(sign) {
@@ -287,8 +221,43 @@ function uuidv4() {
   });
 }
 
-const birthChartData = [
-  {
+// const birthChartData = [];
+
+// retrieveBirthCharts(queryCharts);
+
+// const birthChartData = [
+//   {
+//     sun: "Sagittarius",
+//     moon: "Aries",
+//     ascendant: "Capricorn",
+//     mercury: "Leo",
+//     venus: "Leo",
+//     mars: "Scorpio",
+//     jupiter: "Aries",
+//     saturn: "Pisces",
+//     uranus: "Pisces",
+//     neptune: "Aquarius",
+//     pluto: "Libra",
+//     descendant: "Taurus",
+//   },
+//   {
+//     sun: "Taurus",
+//     moon: "Scorpio",
+//     ascendant: "Leo",
+//     mercury: "Taurus",
+//     venus: "Virgo",
+//     mars: "Virgo",
+//     jupiter: "Aries",
+//     saturn: "Pisces",
+//     uranus: "Sagittarius",
+//     neptune: "Libra",
+//     pluto: "Libra",
+//     descendant: "Aquarius",
+//   },
+// ];
+
+const birthChartData = {
+  id1: {
     sun: "Sagittarius",
     moon: "Aries",
     ascendant: "Capricorn",
@@ -301,8 +270,9 @@ const birthChartData = [
     neptune: "Aquarius",
     pluto: "Libra",
     descendant: "Taurus",
+    _id: "6hf54",
   },
-  {
+  id2: {
     sun: "Taurus",
     moon: "Scorpio",
     ascendant: "Leo",
@@ -315,34 +285,64 @@ const birthChartData = [
     neptune: "Libra",
     pluto: "Libra",
     descendant: "Aquarius",
+    _id: "ieje4",
   },
-];
+};
 
 //LIST
 
 class BirthChartList {
   #list = [];
+
+  /// CONSTRUCTOR WHEN BIRTHCHARTDATA IS AN ARRAY
+  // constructor(birthChartData) {
+  //   birthChartData.forEach(
+  //     function (data) {
+  //       const newBirthChart = new BirthChart(
+  //         data.sun,
+  //         data.moon,
+  //         data.ascendant,
+  //         data.mercury,
+  //         data.venus,
+  //         data.mars,
+  //         data.jupiter,
+  //         data.saturn,
+  //         data.uranus,
+  //         data.neptune,
+  //         data.pluto,
+  //         data.descendant,
+  //       );
+  //       this.#list.push(newBirthChart);
+  //     }.bind(this),
+  //   );
+  // }
+
+  /// CONSTRUCTOR WHEN BIRTHCHARTDATA IS AN OBJECT
   constructor(birthChartData) {
-    birthChartData.forEach(
-      function (data) {
-        const newBirthChart = new BirthChart(
-          data.sun,
-          data.moon,
-          data.ascendant,
-          data.mercury,
-          data.venus,
-          data.mars,
-          data.jupiter,
-          data.saturn,
-          data.uranus,
-          data.neptune,
-          data.pluto,
-          data.descendant,
-        );
-        this.#list.push(newBirthChart);
-      }.bind(this),
-    );
+    for (const chart in birthChartData) {
+      console.log("birthChartData", birthChartData);
+      console.log("chart in loop", chart);
+      const newBirthChart = new BirthChart(
+        chart.sun,
+        chart.moon,
+        chart.ascendant,
+        chart.mercury,
+        chart.venus,
+        chart.mars,
+        chart.jupiter,
+        chart.saturn,
+        chart.uranus,
+        chart.neptune,
+        chart.pluto,
+        chart.descendant,
+        chart._id,
+      );
+      console.log("newBirthChart", newBirthChart);
+      this.#list.push(newBirthChart);
+      console.log("list", this.#list);
+    }
   }
+
   addBirthChart(data) {
     if (!data) throw new Error("No data provided to addBirthChart method");
     const newBirthChart = new BirthChart(
