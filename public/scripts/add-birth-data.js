@@ -145,7 +145,11 @@ myForm.addEventListener("submit", function (e) {
   const loc2Inpu = document.getElementById("location2");
   const inputtedloc2 = loc2Inpu.value;
 
+  console.log("time, date", inputtedTime, inputtedDate);
+
   const fetchURL = `http://localhost:8000/formatData?date=${inputtedDate}&time=${timeToGo}&location1=${inputtedloc1}&location2=${inputtedloc2}&action=`;
+
+  const fetchURLUTC = `https://maps.googleapis.com/maps/api/timezone/json?location=${inputtedloc1},${inputtedloc2}&timestamp=1331161200&key=${TIME_API_KEY}`;
 
   getBirthChart(fetchURL, renderChart);
 });
@@ -181,7 +185,50 @@ async function getBirthChart(fetchURL, handler = renderChart) {
   }
 }
 
-// GEOCODING
+///UTC
+
+const timeMount = document.getElementById("UTCoffset");
+const TIME_API_KEY = "AIzaSyCVeMcz7k47EOLRUjdYKecPFJylBFdpdms";
+const timestamp = "841005900";
+const lat = 39.603481;
+const long = -119.682251;
+
+///const timestamp = Date.parse("2020-11-23 12:56:07")/1000;
+
+function getUTCURL(lat, long, TIME_API_KEY, timestamp) {
+  const TIME_API_URL = `https://maps.googleapis.com/maps/api/timezone/json?location=${lat},${long}&timestamp=${timestamp}&key=${TIME_API_KEY}`;
+  console.log(TIME_API_URL);
+  return TIME_API_URL;
+}
+
+function renderUTC(report, mount = timeMount) {
+  if (!report) {
+    timeMount.innerHTML = "No utc report";
+    return;
+  }
+  timeMount.innerHTML = report;
+  console.log("report", report);
+  const offset = (report.rawOffset += report.dstOffset);
+  console.log("offset", offset);
+  const offsetUTC = Math.floor(offset / 60 / 60);
+  console.log("offsetUTC", offsetUTC);
+}
+
+async function getUTC(currentURL, handler = renderUTC) {
+  try {
+    const response = await fetch(currentURL);
+    //handle bad responses
+
+    if (!response.status >= 200 && response.status < 300) throw response;
+
+    const data = await response.json();
+    handler(data);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+// GEOCODING & UTC
 
 const geoMountLat = document.getElementById("location1");
 const geoMountLong = document.getElementById("location2");
@@ -227,5 +274,7 @@ locationForm.addEventListener("submit", function (e) {
   const placename = placenameInput.value;
   // console.log("value", placename);
   const currentURL = getGeoURL(placename, GEO_API_KEY);
+  const utcURL = getUTCURL(lat, long, TIME_API_KEY, timestamp);
   getLocation(currentURL, renderLocation);
+  getLocation(utcURL, renderUTC);
 });
