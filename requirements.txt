@@ -5,3 +5,12 @@
 # pip3 install hug -U
 # # Or if pip is set to Python3 pip
 # pip install hug -U
+
+# Flatlib  Requires pyswisseph 2.00.00-2 ef1e8cb
+
+# $ pip uninstall pyswisspeh
+# Found existing installation: pyswisseph 2.8.0.post0
+# Uninstalling pyswisseph-2.8.0.post0:
+# ...
+# $ pip install pyswisseph==2.00.00-2
+# ...

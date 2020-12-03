@@ -7,3 +7,7 @@
 # hug -f get-birth-chart.py
 
 # this will start a server running on port 8000
+
+#  Install flatlib
+
+# https://flatlib.readthedocs.io/en/latest/installation.html

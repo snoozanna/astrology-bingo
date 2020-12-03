@@ -60,14 +60,22 @@
       <div class="row">
         <form method="POST" id="location-form">
           <div class="input-field  s6">
+
             <input placeholder="Placename" id="placename-input" type="text" class="validate" name="placename">
-            <label for="location2">Placename</label>
-            <input placeholder="UTC offset" id="utc-input" type="text" class="validate" name="utcoffset">
             <label for="location2">Placename</label>
             <button class="btn waves-effect waves-light add-data" id="placename-btn" type="submit" name="">Find lat/long
             </button>
           </div>
-        </form>
+      </div>
+
+      <div class="row">
+        <form method="POST" id="utc-form">
+          <div class="input-field  s6">
+
+          </div>
+
+      </div>
+      </form>
       </div>
     </section>
     <section id="main-data-section">
@@ -91,6 +99,17 @@
               <input placeholder="Location2" id="location2" type="text" class="validate" name="location2">
               <label for="location2">Longitude</label>
             </div>
+
+            <div class="input-field col s6">
+              <input placeholder="UTC offset" id="utc-input" type="text" class="validate" name="utcoffset">
+              <label for="location2">UTC Offset</label>
+              <a class="waves-effect waves-teal btn-flat find-utc" id="find-utc">Find UTC offset
+              </a>
+            </div>
+          </div>
+
+
+          <div class="input-field col s6">
             <button class="btn waves-effect waves-light add-data" id="add-data" type="submit" name="action">Submit
             </button>
           </div>
@@ -100,7 +119,6 @@
 
     </section>
 
-    <p id="UTCoffset">Time UTC offset</p>
 
     <h1>Chart</h1>
 

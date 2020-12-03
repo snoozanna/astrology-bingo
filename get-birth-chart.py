@@ -11,25 +11,28 @@ from hug.middleware import CORSMiddleware # I can't remember why I needed this b
 api = hug.API(__name__)
 api.http.add_middleware(CORSMiddleware(api))
 
-@hug.get(examples='date=20150313&time=17%3A00&location1=38.3232&location2=-8.5498327')  
+@hug.get(examples='date=20150313&time=1700&location1=38.3234232&location2=-8.5498327&utc=8')  
 @hug.local()
-def formatData(date: hug.types.text, time: hug.types.text, location1: hug.types.text, location2: hug.types.text, hug_timer=3):
+def formatData(date: hug.types.text, time: hug.types.text, location1: hug.types.float_number, location2: hug.types.float_number, utc: hug.types.text, hug_timer=3):
     """Changing the data types"""
     print(date)
     dateString = date[0:4]+"/"+date[4:6]+"/"+date[6:8]
-    timeString = time[0:2]+":"+time[3:6]
-    location1String = location1.replace(".",":")
-    location2String = location2.replace(".",":")
-    return runAstroScript(dateString, timeString, location1String, location2String)
+    timeString = time[0:2]+":"+time[2:4]
+    # location1String = location1
+    # location2String = location2
+    # location1String = location1.replace(".",":")
+    # location2String = location2.replace(".",":")
+    return runAstroScript(dateString, timeString, location1, location2, utc)
+    # return ('{0} {1} {2} {3} {4}'.format(dateString, timeString, location1, location2, utc))   
 
 
 
 
-def runAstroScript(dateString, timeString, location1String, location2String):
+def runAstroScript(dateString, timeString, location1, location2, utc):
 # Here you call the functions you need to and parse the data into whatever format you need it in (maybe a dict)
     """Running flatlib script"""
-    date = Datetime(dateString, timeString, '+00:00')
-    pos = GeoPos(location1String, location2String)
+    date = Datetime(dateString, timeString, utc)
+    pos = GeoPos(location1, location2)
     chart = Chart(date, pos, IDs=const.LIST_OBJECTS)
     # chart = Chart(date, pos, hsys=const.HOUSES_PLACIDUS)
     asc = chart.get(const.ASC)
@@ -38,3 +41,4 @@ def runAstroScript(dateString, timeString, location1String, location2String):
         chart_dict.update({obj.id: obj.sign})
     chart_dict.update({asc.id: asc.sign})
     return ('{0}'.format(chart_dict))   
+    # return ('{0}{1}{2}'.format(date, pos.lat, pos.lon))   
