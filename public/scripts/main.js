@@ -78,108 +78,90 @@ class BirthChart {
       sign: sun,
       icon: BirthChart.getIconSVG(sun),
       location: { x: 500, y: -250 },
+      word: BirthChart.getSignWordSVG(sun),
+      wordLocation: { x: 500, y: -250 },
     };
     this.moon = {
       sign: moon,
       icon: BirthChart.getIconSVG(moon),
       location: { x: 380, y: -270 },
+      word: BirthChart.getSignWordSVG(moon),
+      wordLocation: { x: 380, y: -270 },
     };
     this.ascendant = {
       sign: ascendant,
       icon: BirthChart.getIconSVG(ascendant),
       location: { x: 180, y: -100 },
+      word: BirthChart.getSignWordSVG(ascendant),
+      wordLocation: { x: 180, y: -100 },
     };
     this.mercury = {
       sign: mercury,
       icon: BirthChart.getIconSVG(mercury),
       location: { x: 650, y: -220 },
+      word: BirthChart.getSignWordSVG(mercury),
+      wordLocation: { x: 650, y: -220 },
     };
     this.venus = {
       sign: venus,
       icon: BirthChart.getIconSVG(venus),
       location: { x: 670, y: -90 },
+      word: BirthChart.getSignWordSVG(venus),
+      wordLocation: { x: 670, y: -90 },
     };
     this.mars = {
       sign: mars,
       icon: BirthChart.getIconSVG(mars),
       location: { x: 680, y: 50 },
+      word: BirthChart.getSignWordSVG(mars),
+      wordLocation: { x: 680, y: 50 },
     };
     this.jupiter = {
       sign: jupiter,
       icon: BirthChart.getIconSVG(jupiter),
       location: { x: 610, y: 170 },
+      word: BirthChart.getSignWordSVG(jupiter),
+      wordLocation: { x: 610, y: 170 },
     };
     this.saturn = {
       sign: saturn,
       icon: BirthChart.getIconSVG(saturn),
       location: { x: 490, y: 220 },
+      word: BirthChart.getSignWordSVG(saturn),
+      wordLocation: { x: 490, y: 220 },
     };
     this.uranus = {
       sign: uranus,
       icon: BirthChart.getIconSVG(uranus),
       location: { x: 370, y: 230 },
+      word: BirthChart.getSignWordSVG(uranus),
+      wordLocation: { x: 370, y: 230 },
     };
     this.neptune = {
       sign: neptune,
       icon: BirthChart.getIconSVG(neptune),
       location: { x: 240, y: 160 },
+      word: BirthChart.getSignWordSVG(neptune),
+      wordLocation: { x: 240, y: 160 },
     };
     this.pluto = {
       sign: pluto,
       icon: BirthChart.getIconSVG(pluto),
       location: { x: 180, y: 50 },
+      word: BirthChart.getSignWordSVG(pluto),
+      wordLocation: { x: 180, y: 50 },
     };
     this.descendant = {
       sign: descendant,
       icon: BirthChart.getIconSVG(descendant),
       location: { x: 230, y: -220 },
+      word: BirthChart.getSignWordSVG(descendant),
+      wordLocation: { x: 230, y: -220 },
     };
 
     // this._id = uuidv4();
     this._id = _id;
   }
-
-  // static getIconSVG(sign) {
-  //   switch (sign) {
-  //     case "Aries":
-  //       return "./assets/img/aries.svg";
-  //       break;
-  //     case "Taurus":
-  //       return "./assets/img/taurus.svg";
-  //       break;
-  //     case "Gemini":
-  //       return "./assets/img/gemini.svg";
-  //       break;
-  //     case "Cancer":
-  //       return "./assets/img/cancer.svg";
-  //       break;
-  //     case "Leo":
-  //       return "./assets/img/leo.svg";
-  //       break;
-  //     case "Virgo":
-  //       return "./assets/img/virgo.svg";
-  //       break;
-  //     case "Libra":
-  //       return "./assets/img/libra.svg";
-  //     case "Scorpio":
-  //       return "./assets/img/scorpio.svg";
-  //       break;
-  //     case "Sagittarius":
-  //       return "./assets/img/sagittarius.svg";
-  //       break;
-  //     case "Capricorn":
-  //       return "./assets/img/capricorn.svg";
-  //       break;
-  //     case "Aquarius":
-  //       return "./assets/img/aquarius.svg";
-  //       break;
-  //     case "Pisces":
-  //       return "./assets/img/pisces.svg";
-  //     default:
-  //       console.log("default");
-  //       break;
-  //   }
-  // }
 
   static getIconSVG(sign) {
     switch (sign) {
@@ -230,6 +212,50 @@ class BirthChart {
       case "Pisces":
         // return "./assets/img/pisces.svg";
         return `<path d="M22.62 246.23L0 223.95c23.11-23.26 37.24-51.23 41.34-84.78H.65V107.5h40.73c-4-33.81-18-61.83-41.19-85.25L22.94.04c29.08 29.05 46.05 64.84 50.55 107.23h11.07c8.81 0 17.63-.15 26.45.08 3.53.09 4.66-1 5.09-4.58 4.71-39.6 21.27-73.56 49.18-102a8.17 8.17 0 01.9-.73l22.65 22.12c-23.19 23.26-37.27 51.42-41.38 85.17h44.94v31.71h-44.9c4.17 33.56 18.18 61.57 41.36 84.84l-22.55 22.36q-44.12-44.14-50.83-106.9h-42c-4.55 41.7-21.44 77.48-50.85 106.89z"/>`;
+        break;
+      default:
+        console.log("default");
+        break;
+    }
+  }
+
+  static getSignWordSVG(sign) {
+    switch (sign) {
+      case "Aries":
+        return `<text transform="translate(95.54 82.85) scale(1.24 1)" style="font-size:74.2055892944336px;font-family:Courier">A<tspan x="0" y="64.26">R</tspan><tspan x="0" y="128.51">I</tspan><tspan x="0" y="192.75">E</tspan><tspan x="0" y="257.03">S</tspan></text>`;
+        break;
+      case "Taurus":
+        return `<text transform="translate(87.54 82.85) scale(1.24 1)" style="font-size:74.2055892944336px;font-family:Courier">T<tspan x="0" y="64.26">A</tspan><tspan x="0" y="128.51">U</tspan><tspan x="0" y="192.75">R</tspan><tspan x="0" y="257.03">U</tspan><tspan x="0" y="321.28">S</tspan></text>`;
+        break;
+      case "Gemini":
+        return `<text transform="translate(87.54 82.85) scale(1.24 1)" style="font-size:74.2055892944336px;font-family:Courier">G<tspan x="0" y="64.26">E</tspan><tspan x="0" y="128.51">M</tspan><tspan x="0" y="192.75">I</tspan><tspan x="0" y="257.03">N</tspan><tspan x="0" y="321.28">I</tspan></text>`;
+        break;
+      case "Cancer":
+        return `<text transform="translate(87.54 82.85) scale(1.24 1)" style="font-size:74.2055892944336px;font-family:Courier">C<tspan x="0" y="64.26">A</tspan><tspan x="0" y="128.51">N</tspan><tspan x="0" y="192.75">C</tspan><tspan x="0" y="257.03">E</tspan><tspan x="0" y="321.28">R</tspan></text>`;
+        break;
+      case "Leo":
+        return `<text transform="translate(87.54 82.85) scale(1.24 1)" style="font-size:74.2055892944336px;font-family:Courier">L<tspan x="0" y="64.26">E</tspan><tspan x="0" y="128.51">O</tspan></text>`;
+        break;
+      case "Virgo":
+        return `<text transform="translate(87.54 82.85) scale(1.24 1)" style="font-size:74.2055892944336px;font-family:Courier">V<tspan x="0" y="64.26">I</tspan><tspan x="0" y="128.51">R</tspan><tspan x="0" y="192.75">G</tspan><tspan x="0" y="257.03">O</tspan></text>`;
+        break;
+      case "Libra":
+        return `<text transform="translate(87.54 82.85) scale(1.24 1)" style="font-size:74.2055892944336px;font-family:Courier">L<tspan x="0" y="64.26">I</tspan><tspan x="0" y="128.51">B</tspan><tspan x="0" y="192.75">R</tspan><tspan x="0" y="257.03">A</tspan></text>`;
+        break;
+      case "Scorpio":
+        return `<text transform="translate(87.54 82.85) scale(1.24 1)" style="font-size:74.2055892944336px;font-family:Courier">S<tspan x="0" y="64.26">C</tspan><tspan x="0" y="128.51">O</tspan><tspan x="0" y="192.75">R</tspan><tspan x="0" y="257.03">P</tspan><tspan x="0" y="321.28">I</tspan><tspan x="0" y="385.53">O</tspan></text>`;
+        break;
+      case "Sagittarius":
+        return `<text transform="translate(80.29 83.2) scale(1.24 1)" style="font-size:74.2055892944336px;font-family:Courier">S<tspan x="0" y="57.48">A</tspan><tspan x="0" y="114.91">G</tspan><tspan x="0" y="172.38">I</tspan><tspan x="0" y="229.84">T</tspan><tspan x="0" y="287.3">T</tspan><tspan x="0" y="344.77">A</tspan><tspan x="0" y="402.22">R</tspan><tspan x="0" y="459.69">I</tspan><tspan x="0" y="517.16">U</tspan><tspan x="0" y="574.61">S</tspan></text>`;
+        break;
+      case "Capricorn":
+        return `<text transform="translate(87.54 82.85) scale(1.24 1)" style="font-size:74.2055892944336px;font-family:Courier">C<tspan x="0" y="64.26">A</tspan><tspan x="0" y="128.51">P</tspan><tspan x="0" y="192.75">R</tspan><tspan x="0" y="257.03">I</tspan><tspan x="0" y="321.28">C</tspan><tspan x="0" y="385.53">O</tspan><tspan x="0" y="449.77">R</tspan><tspan x="0" y="514.04">N</tspan></text>`;
+        break;
+      case "Aquarius":
+        return `<text transform="translate(87.54 82.85) scale(1.24 1)" style="font-size:74.2055892944336px;font-family:Courier">A<tspan x="0" y="64.26">Q</tspan><tspan x="0" y="128.51">U</tspan><tspan x="0" y="192.75">A</tspan><tspan x="0" y="257.03">R</tspan><tspan x="0" y="321.28">I</tspan><tspan x="0" y="385.53">U</tspan><tspan x="0" y="449.77">S</tspan></text>`;
+        break;
+      case "Pisces":
+        return `<text transform="translate(87.54 82.85) scale(1.24 1)" style="font-size:74.2055892944336px;font-family:Courier">P<tspan x="0" y="64.26">I</tspan><tspan x="0" y="128.51">S</tspan><tspan x="0" y="192.75">C</tspan><tspan x="0" y="257.03">E</tspan><tspan x="0" y="321.28">S</tspan></text>`;
         break;
       default:
         console.log("default");
@@ -442,15 +468,29 @@ function renderChart(chart, mountNode) {
   for (const sign in chart) {
     if (chart.hasOwnProperty(sign) && sign != "_id") {
       const currentSign = chart[sign];
+      console.log("current sign", currentSign);
       const currentSymbol = document.createElementNS(
         "http://www.w3.org/2000/svg",
         "svg",
       );
+      console.log("currentSymbol", currentSymbol);
+      const currentWord = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "svg",
+      );
+      console.log("currentWord", currentWord);
       currentSymbol.setAttribute("viewBox", "0 0 250 250");
       currentSymbol.setAttribute("width", "50");
       currentSymbol.classList.add("sign", "icon", "chart");
       currentSymbol.innerHTML = currentSign.icon;
       currentSymbol.location = currentSign.location;
+
+      currentWord.setAttribute("viewBox", "0 0 250 250");
+      currentWord.setAttribute("width", "50");
+      currentWord.classList.add("sign", "word", "chart");
+      currentWord.innerHTML = currentSign.word;
+      currentWord.location = currentSign.wordLocation;
+
       gsap.to(
         currentSymbol,
         // duration: 6,
@@ -461,6 +501,13 @@ function renderChart(chart, mountNode) {
           },
         },
       );
+      gsap.to(currentWord, {
+        attr: {
+          x: `${currentWord.location.x}`,
+          y: `${currentWord.location.y}`,
+        },
+      });
+      // symbolsToPopulate.push(currentSymbol, currentWord);
       symbolsToPopulate.push(currentSymbol);
     }
   }

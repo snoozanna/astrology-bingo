@@ -233,7 +233,7 @@ async function getBirthChart(fetchURL, handler = renderChart) {
 
 const timeMount = document.getElementById("utc-input");
 const TIME_API_KEY = "AIzaSyCVeMcz7k47EOLRUjdYKecPFJylBFdpdms";
-const timestamp = "841005900";
+// const timestamp = "841005900";
 const lat = 39.603481;
 const long = -119.682251;
 
