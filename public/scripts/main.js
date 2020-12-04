@@ -385,8 +385,8 @@ class BirthChartList {
 
 // toggle between these two to see it working and not...
 
-// const inPlay = new BirthChartList(birthChartDataOrig);
-const inPlay = new BirthChartList(birthChartDataArr);
+const inPlay = new BirthChartList(birthChartDataOrig);
+// const inPlay = new BirthChartList(birthChartDataArr);
 
 console.log("charts in play", inPlay.getList());
 
@@ -482,6 +482,7 @@ function renderChart(chart, mountNode) {
   console.log("chartImg", chartImg);
   chartImg.classList.add("bc-template", "materialboxed");
   chartImg.setAttribute("viewBox", "0 0 900 900");
+  chartImg.id = "chartToShow";
   chartImg.innerHTML = `<defs>
     <clipPath id="a" transform="translate(-51.96 -77.75)">
       <path fill="none" d="M11.03 77.75h977.94V923.2H11.03z"/>
@@ -499,10 +500,24 @@ function renderChart(chart, mountNode) {
 `;
 
   chartImg.append(...symbolsToPopulate);
-  imgfrag.append(chartImg);
+
+  const printBtn = document.createElement("button");
+  printBtn.classList.add("btn", "btn-danger", "waves-light", "print-btn");
+  printBtn.id = "printBtn";
+  printBtn.innerHTML = "PRINT";
+  imgfrag.append(chartImg, printBtn);
 
   mountNode.innerHTML = "";
   mountNode.append(imgfrag);
+
+  console.log("print button", printBtn);
+
+  printBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    console.log(printJS);
+    console.log("hello");
+    printJS("chartToShow", "html");
+  });
 }
 
 /// DELETE (A - add update)
@@ -534,3 +549,7 @@ birthChartList.addEventListener("click", (e) => {
     renderChart(chart, showBirthChartSection);
   }
 });
+
+/// PRINT CHART
+
+// const printBtn = document.getElementById("printBtn");
