@@ -59,3 +59,51 @@ body {
   padding-top: 0;
   margin-top: 50px;
 }
+
+.inner-word.sun {
+  transform: rotate(192deg);
+}
+
+.inner-word.moon {
+  transform: rotate(166deg);
+}
+
+.inner-word.ascendant {
+  transform: rotate(106deg);
+}
+
+.inner-word.mars {
+  transform: rotate(-76deg);
+}
+
+.inner-word.mercury {
+  transform: rotate(-135deg);
+}
+
+.inner-word.venus {
+  transform: rotate(-115deg);
+}
+
+.inner-word.jupiter {
+  transform: rotate(-45deg);
+}
+
+.inner-word.descendant {
+  transform: rotate(135deg);
+}
+
+.inner-word.pluto {
+  transform: rotate(73deg);
+}
+
+.inner-word.neptune {
+  transform: rotate(49deg);
+}
+
+.inner-word.uranus {
+  transform: rotate(15deg);
+}
+
+.inner-word.saturn {
+  transform: rotate(-17deg);
+}

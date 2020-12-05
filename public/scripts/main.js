@@ -79,84 +79,108 @@ class BirthChart {
       icon: BirthChart.getIconSVG(sun),
       location: { x: 500, y: -250 },
       word: BirthChart.getSignWordSVG(sun),
-      wordLocation: { x: 500, y: -250 },
+      wordLocation: { x: 447, y: 30 },
+      wordRotation: "rotate(192deg)",
+      viewBox: "-100 60 500 500",
     };
     this.moon = {
       sign: moon,
       icon: BirthChart.getIconSVG(moon),
       location: { x: 380, y: -270 },
       word: BirthChart.getSignWordSVG(moon),
-      wordLocation: { x: 380, y: -270 },
+      wordLocation: { x: 315, y: 25 },
+      wordRotation: "rotate(166deg)",
+      viewBox: "-400 60 500 500",
     };
     this.ascendant = {
       sign: ascendant,
       icon: BirthChart.getIconSVG(ascendant),
       location: { x: 180, y: -100 },
       word: BirthChart.getSignWordSVG(ascendant),
-      wordLocation: { x: 180, y: -100 },
+      wordLocation: { x: 280, y: 62 },
+      wordRotation: "rotate(106deg)",
+      viewBox: "-500 70 600 600",
     };
     this.mercury = {
       sign: mercury,
       icon: BirthChart.getIconSVG(mercury),
       location: { x: 650, y: -220 },
       word: BirthChart.getSignWordSVG(mercury),
-      wordLocation: { x: 650, y: -220 },
+      wordLocation: { x: 470, y: 50 },
+      wordRotation: "rotate(-135deg)",
+      viewBox: "-100 60 500 500",
     };
     this.venus = {
       sign: venus,
       icon: BirthChart.getIconSVG(venus),
       location: { x: 670, y: -90 },
       word: BirthChart.getSignWordSVG(venus),
-      wordLocation: { x: 670, y: -90 },
+      wordLocation: { x: 480, y: 73 },
+      wordRotation: "rotate(-115deg)",
+      viewBox: "-100 60 500 500",
     };
     this.mars = {
       sign: mars,
       icon: BirthChart.getIconSVG(mars),
       location: { x: 680, y: 50 },
       word: BirthChart.getSignWordSVG(mars),
-      wordLocation: { x: 680, y: 50 },
+      wordLocation: { x: 475, y: 100 },
+      wordRotation: "rotate(-76deg)",
+      viewBox: "-100 60 500 500",
     };
     this.jupiter = {
       sign: jupiter,
       icon: BirthChart.getIconSVG(jupiter),
       location: { x: 610, y: 170 },
       word: BirthChart.getSignWordSVG(jupiter),
-      wordLocation: { x: 610, y: 170 },
+      wordLocation: { x: 445, y: 110 },
+      wordRotation: "rotate(-45deg)",
+      viewBox: "-100 60 500 500",
     };
     this.saturn = {
       sign: saturn,
       icon: BirthChart.getIconSVG(saturn),
       location: { x: 490, y: 220 },
       word: BirthChart.getSignWordSVG(saturn),
-      wordLocation: { x: 490, y: 220 },
+      wordLocation: { x: 432, y: 140 },
+      viewBox: "-100 60 500 500",
+      wordRotation: "rotate(-17deg)",
     };
     this.uranus = {
       sign: uranus,
       icon: BirthChart.getIconSVG(uranus),
       location: { x: 370, y: 230 },
       word: BirthChart.getSignWordSVG(uranus),
-      wordLocation: { x: 370, y: 230 },
+      wordLocation: { x: 300, y: 140 },
+      viewBox: "-400 60 500 500",
+      wordRotation: "rotate(15deg)",
     };
     this.neptune = {
       sign: neptune,
       icon: BirthChart.getIconSVG(neptune),
       location: { x: 240, y: 160 },
       word: BirthChart.getSignWordSVG(neptune),
-      wordLocation: { x: 240, y: 160 },
+      wordLocation: { x: 305, y: 110 },
+      wordRotation: "rotate(49deg)",
+      viewBox: "-350 70 500 500",
     };
     this.pluto = {
       sign: pluto,
       icon: BirthChart.getIconSVG(pluto),
       location: { x: 180, y: 50 },
       word: BirthChart.getSignWordSVG(pluto),
-      wordLocation: { x: 180, y: 50 },
+      wordLocation: { x: 265, y: 88 },
+      wordRotation: "rotate(73deg)",
+      viewBox: "-400 60 500 500",
     };
     this.descendant = {
       sign: descendant,
       icon: BirthChart.getIconSVG(descendant),
       location: { x: 230, y: -220 },
       word: BirthChart.getSignWordSVG(descendant),
-      wordLocation: { x: 230, y: -220 },
+      wordLocation: { x: 287, y: 35 },
+      wordRotation: "rotate(135deg)",
+      viewBox: "-400 60 500 500",
     };
 
     // this._id = uuidv4();
@@ -485,11 +509,16 @@ function renderChart(chart, mountNode) {
       currentSymbol.innerHTML = currentSign.icon;
       currentSymbol.location = currentSign.location;
 
-      currentWord.setAttribute("viewBox", "0 0 250 250");
-      currentWord.setAttribute("width", "50");
-      currentWord.classList.add("sign", "word", "chart");
+      currentWord.setAttribute("viewBox", `${currentSign.viewBox}`);
+      currentWord.setAttribute("width", "175");
+      currentWord.classList.add("sign", "word", "chart", `${sign}`);
       currentWord.innerHTML = currentSign.word;
       currentWord.location = currentSign.wordLocation;
+      const toRotate = currentWord.firstChild;
+      toRotate.classList.add("inner-word", `${sign}`);
+      const degrees = currentSign.wordRotation;
+      toRotate.setAttribute("transform", `${degrees}`);
+      console.log("toRotate", toRotate);
 
       gsap.to(
         currentSymbol,
@@ -507,8 +536,19 @@ function renderChart(chart, mountNode) {
           y: `${currentWord.location.y}`,
         },
       });
-      // symbolsToPopulate.push(currentSymbol, currentWord);
-      symbolsToPopulate.push(currentSymbol);
+      // gsap.to(
+      //   currentWord,
+      //   {
+      //     // duration: 0.2,
+      //     // skewX: -60,
+      //     // scaleY: 0.2,
+      //     // rotation: 90,
+      //   },
+      //   "fly",
+      // );
+
+      symbolsToPopulate.push(currentSymbol, currentWord);
+      // symbolsToPopulate.push(currentSymbol);
     }
   }
   console.log("symbolsToPopulate", symbolsToPopulate);

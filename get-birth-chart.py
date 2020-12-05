@@ -18,10 +18,6 @@ def formatData(date: hug.types.text, time: hug.types.text, location1: hug.types.
     print(date)
     dateString = date[0:4]+"/"+date[4:6]+"/"+date[6:8]
     timeString = time[0:2]+":"+time[2:4]
-    # location1String = location1
-    # location2String = location2
-    # location1String = location1.replace(".",":")
-    # location2String = location2.replace(".",":")
     return runAstroScript(dateString, timeString, location1, location2, utc)
     # return ('{0} {1} {2} {3} {4}'.format(dateString, timeString, location1, location2, utc))   
 
